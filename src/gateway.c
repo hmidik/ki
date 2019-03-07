@@ -26,19 +26,19 @@ void handle_communication(void)
       switch (modem_msg.ctl_cmd)
     	{
         case PING:
-    		 // Send an alive signal!
-        memset(&modem_data_buff, 0, MODEM_MAX_PAYLOAD_LENGTH);
-    		memcpy(&modem_data_buff, "PONG", sizeof("PONG"));
-    		modem_enqueue_outgoing(modem_data_buff, sizeof(modem_data_buff));
-    		break;
+          // Send an alive signal!
+          memset(&modem_data_buff, 0, MODEM_MAX_PAYLOAD_LENGTH);
+          memcpy(&modem_data_buff, "PONG", sizeof("PONG"));
+          modem_enqueue_outgoing(modem_data_buff, sizeof(modem_data_buff));
+          break;
 
         case RESTART:
-    		// Restart gateway!
-    	  reset_device();
-    		break;
-        
+          // Restart gateway!
+          reset_device();
+          break;
+
     		default:
-    		break;
+          break;
       }
     }
     // The command will be treated by the sensor
