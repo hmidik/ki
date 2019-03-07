@@ -1,1 +1,24 @@
-YOUR PROTOCOL DEFINITION GOES HERE
+This protocol consists of:
+    1- 1 byte field contains a control command.
+    2- 1 byte field for the specified flags
+    3- 1 byte represents the data length [min=0 byte, max=125 byte]. Includes sensor id and token
+    4- 16 byte sensor id
+    5- 16 byte sensor token
+    6- What's left can be used flexibly.
+
+
+* Control commands: Are 1 byte HEX encoded values that represents the commands set as required.
+    PING        0x01
+    RESTART     0x02
+    ADDKITOKEN  0x03
+    RMKITOKEN   0x04
+    OPENDOOR    0x05
+
+    ERROR       0xDF
+    PONG        0xEF
+    ACK         0xFF
+
+* Flags: Are 1 byte HEX encoded values, to specify where the commands will be executed.
+    GATEWAY_COMMAND_FLAG          0x01
+    SENSOR_COMMAND_FLAG           0x02
+
