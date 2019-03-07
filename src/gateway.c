@@ -41,6 +41,7 @@ void handle_communication(void)
 					break;
       }
 		}
+    // The command will be treated by the sensor
 		else if(modem_msg.flags & SENSOR_COMMAND_FLAG)
 		{
 			device_id_t to_sensor_id;
@@ -53,6 +54,13 @@ void handle_communication(void)
       // Send to sensor
 			wireless_enqueue_outgoing(to_sensor_id, wireless_msg.wi_msg);
 		}
+    // Invalid command
+    else
+    {
+      memset(&modem_data_buff, 0, MODEM_MAX_PAYLOAD_LENGTH);
+      memcpy(&modem_data_buff, "ERROR", sizeof("ERROR"));
+      modem_enqueue_outgoing(modem_data_buff, sizeof(modem_data_buff));
+    }
 	}
 
   device_id_t from_sensor_id;
