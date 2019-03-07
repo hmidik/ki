@@ -7,9 +7,9 @@
 #define RMKITOKEN   0x04
 #define OPENDOOR    0x05
 
-#define ERROR       0xDF
-#define PONG        0xEF
-#define ACK         0xFF
+// #define ERROR       0xDF
+// #define PONG        0xEF
+// #define ACK         0xFF
 
 // flags
 #define GATEWAY_COMMAND_FLAG          0x01
@@ -38,6 +38,3 @@ typedef union modem_message
   uint8_t modem_data[MODEM_MAX_PAYLOAD_LENGTH - 35];
 	uint8_t modem_msg[MODEM_MAX_PAYLOAD_LENGTH];
 } modem_message_t;
-
-// Pong massage
-modem_message_t pong_msg = {PONG};
