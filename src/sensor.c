@@ -19,9 +19,12 @@ void handle_communication(void)
   {
     memcpy(&wireless_msg, wi_data_buff, WIRELESS_PAYLOAD_LENGTH);
 
-    memset(wi_data_buff, 0, WIRELESS_PAYLOAD_LENGTH);
-    memcpy(wi_data_buff, "ACK", sizeof("ACK"));
-    wireless_enqueue_outgoing(wi_data_buff);
+    if((wireless_msg.ctl_cmd != PING) && (wireless_msg.ctl_cmd != RESTART))
+    {
+      memset(wi_data_buff, 0, WIRELESS_PAYLOAD_LENGTH);
+      memcpy(wi_data_buff, "ACK", sizeof("ACK"));
+      wireless_enqueue_outgoing(wi_data_buff);
+    }
 
     switch (wireless_msg.ctl_cmd)
     {
@@ -92,6 +95,5 @@ void handle_communication(void)
       default:
         break;
     }
-
   }
 }
