@@ -1,3 +1,6 @@
+#pragma once
+
+#include "gateway/modem.h"
 
 
 // Commands
